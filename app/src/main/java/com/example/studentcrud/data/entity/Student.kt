@@ -1,4 +1,13 @@
 package com.example.studentcrud.data.entity
 
-class Student {
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import kotlinx.serialization.descriptors.PrimitiveKind
+
+@Entity (tableName = "student")
+data class Student (
+    @PrimaryKey (autoGenerate = true)
+    val id: Int = 0,
+    val name: String,
+    val course: String
+)
