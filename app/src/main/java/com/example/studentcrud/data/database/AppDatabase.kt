@@ -8,28 +8,27 @@ import com.example.studentcrud.data.entity.Student
 import com.example.studentcrud.data.dao.StudentDao
 
 @Database (
-    Entities = (Student::class),
+    Entities = [Student::class],
     version = 1,
     exportSchema = false
 )
 
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun studentDao(): StudentDao {
+abstract class AppDatabase: RoomDatabase() {
+    abstract fun studentDao(): StudentDao
 
-        companion object {
-            @Volatile
-            private var INSTANCE: AppDatabase? = null
+    companion object{
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
 
-            fun getDatabase(context: Context) : AppDatabase {
-                 return INSTANCE :? synchronized(this) {
-                     val instance = Room.databaseBuilder(
-                         context.applicationContext,
-                         AppDatabase::class.java,
-                         "student_db"
-                     ).build()
-                    INSTANCE = instance
-                    instance
-                }
+        fun getDatabase (context: Context) : AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.ApplicationContext,
+                    AppDatabase::class.java,
+                    "student_db"
+                ).build()
+                INSTANCE = instance
+                instance
             }
         }
     }
