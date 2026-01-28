@@ -1,7 +1,7 @@
-package com.example.studentcrudapp.data.repository
+package com.example.studentcrud.data.repository
 
-import com.example.studentcrudapp.data.dao.StudentDao
-import com.example.studentcrudapp.data.entity.Student
+import com.example.studentcrud.data.dao.StudentDao
+import com.example.studentcrud.data.entity.Student
 import kotlinx.coroutines.flow.Flow
 
 class StudentRepository(private val dao: StudentDao) {
