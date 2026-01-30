@@ -1,8 +1,8 @@
 package com.example.studentcrud.data.repository
 
+import kotlinx.coroutines.flow.Flow
 import com.example.studentcrud.data.dao.StudentDao
 import com.example.studentcrud.data.entity.Student
-import kotlinx.coroutines.flow.Flow
 
 class StudentRepository(private val dao: StudentDao) {
     val allStudents: Flow<List<Student>> = dao.getAllStudents()

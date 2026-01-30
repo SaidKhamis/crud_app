@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.Flow
 import com.example.studentcrud.data.entity.Student
 
 @Dao
-interface StudentDao {
-    @Query("SELECT * FROM student")
+interface StudentDao{
+    @Query ("SELECT * FROM student")
     fun getAllStudents(): Flow<List<Student>>
 
-    @Insert(onConflict = OnConflictStrategy. REPLACE)
+    @Insert (onConflict = OnConfilctStrategy.REPLACE)
     suspend fun insertStudent(student: Student)
 
     @Update
