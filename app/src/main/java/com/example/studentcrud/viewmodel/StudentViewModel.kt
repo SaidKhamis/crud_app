@@ -29,7 +29,7 @@ class StudentViewModel (private val repository: StudentRepository): ViewModel() 
         repository.update(student)
     }
 
-    fun delete(student: Student) = viewModelScope.launch {
+    fun deleteStudent (student: Student) = viewModelScope.launch {
         repository.delete(student)
     }
 }
