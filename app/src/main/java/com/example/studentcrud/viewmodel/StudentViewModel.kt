@@ -25,11 +25,11 @@ class StudentViewModel (private val repository: StudentRepository): ViewModel() 
         repository.insert(student)
     }
 
-    fun update(student: Student) = viewModelScope.launch {
+    fun updateStudent (student: Student) = viewModelScope.launch {
         repository.update(student)
     }
 
-    fun delete(student: Student) = viewModelScope.launch {
+    fun deleteStudent (student: Student) = viewModelScope.launch {
         repository.delete(student)
     }
 }
