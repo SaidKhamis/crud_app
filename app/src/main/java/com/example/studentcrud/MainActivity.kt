@@ -3,45 +3,27 @@ package com.example.studentcrud
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.studentcrud.ui.theme.StudentCrudTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.studentcrud.data.database.AppDatabase
+import com.example.studentcrud.data.repository.StudentRepository
+import com.example.studentcrud.ui.screens.StudentListScreen
+import com.example.studentcrud.viewmodel.StudentViewModel
+import com.example.studentcrud.viewmodel.StudentViewModelFactory
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun  onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        //Room Setup
+        val dao = AppDatabase.getDatabase(this).studentDao()
+        val repository = StudentRepository (dao)
+        val factory = StudentViewModelFactory(repository)
+
         setContent {
-            StudentCrudTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            val studentViewModel: StudentViewModel =
+                viewModel(factory = factory)
+
+            StudentListScreen(viewModel = studentViewModel)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StudentCrudTheme {
-        Greeting("Android")
     }
 }
