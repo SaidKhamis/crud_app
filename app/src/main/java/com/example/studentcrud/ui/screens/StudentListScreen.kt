@@ -32,7 +32,7 @@ fun StudentListScreen(viewModel: StudentViewModel) {
 
         TextField(
             value = course,
-            onValueChange = {course = it},
+            onValueChange  = {course = it},
             label = {Text("Course")},
             modifier = Modifier.fillMaxWidth()
         )
