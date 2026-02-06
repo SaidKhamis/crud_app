@@ -9,7 +9,7 @@ class StudentViewModelFactory(
 ) : ViewModelProvider.Factory
 {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(StudentViewModel::class.java)) {
+        if (modelClass.isAssignableFrom (StudentViewModel::class.java) ) {
             @Suppress("UNCHECKED_CAST")
             return StudentViewModel(repository) as T
         }
