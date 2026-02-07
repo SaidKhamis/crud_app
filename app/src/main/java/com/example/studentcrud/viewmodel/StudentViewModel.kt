@@ -13,7 +13,7 @@ class StudentViewModel (private val repository: StudentRepository): ViewModel() 
 
     val students: StateFlow<List<Student>> = _students
 
-    init {
+    init { //Update the UI as soon as the Data in the Database Change.
         viewModelScope.launch {
             repository.allStudents.collect {
                 studentList -> _students.value = studentList
@@ -21,6 +21,7 @@ class StudentViewModel (private val repository: StudentRepository): ViewModel() 
         }
     }
 
+    //A function to call the Insert Query from StudentDao
     fun addStudent(student: Student) = viewModelScope.launch {
         repository.insert(student)
     }
