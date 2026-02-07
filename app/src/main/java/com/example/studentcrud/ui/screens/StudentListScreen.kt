@@ -15,7 +15,7 @@ fun StudentListScreen(viewModel: StudentViewModel) {
     val students by viewModel.students.collectAsState()
 
     var name by remember { mutableStateOf("") }
-    var course by remember {mutableStateOf("")}
+    var course by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
