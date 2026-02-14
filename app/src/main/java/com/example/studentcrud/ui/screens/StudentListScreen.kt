@@ -10,6 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.studentcrud.data.entity.Student
 import com.example.studentcrud.viewmodel.StudentViewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.Alignment
 
 @Composable
 fun StudentListScreen(viewModel: StudentViewModel) {
@@ -72,31 +78,33 @@ fun StudentListScreen(viewModel: StudentViewModel) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
 
                     Text(
                         text = "${student.name} - ${student.course}",
-                        style = MaterialTheme.typography.bodyLarge
+                        modifier = Modifier.weight(1f)
                     )
 
                     Row {
-                        Button(
-                            onClick = {
-                                selectedStudent = student
-                                editName = student.name
-                                editCourse = student.course
-                                showDialog = true
-                            },
-                            modifier = Modifier.padding(end = 8.dp)
+
+                        IconButton(
+                            onClick = { /* update action */ }
                         ) {
-                            Text("Update")
+                            Icon(
+                                imageVector = Icons.Default.Edit,
+                                contentDescription = "Update"
+                            )
                         }
 
-                        Button(
+                        IconButton(
                             onClick = { viewModel.deleteStudent(student) }
                         ) {
-                            Text("Delete")
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = "Delete"
+                            )
                         }
                     }
                 }
