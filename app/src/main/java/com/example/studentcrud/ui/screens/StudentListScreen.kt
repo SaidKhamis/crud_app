@@ -18,15 +18,21 @@ import androidx.compose.material3.IconButton
 import androidx.compose.ui.Alignment
 
 @Composable
-fun StudentListScreen(viewModel: StudentViewModel) {
+fun StudentListScreen(viewModel: StudentViewModel, modifier: Modifier = Modifier) {
 
     val students by viewModel.students.collectAsState()
 
     var name by remember { mutableStateOf("") }
     var course by remember { mutableStateOf("") }
 
+    var showDialog by remember { mutableStateOf(false) }
+    var selectedStudent by remember { mutableStateOf<Student?>(null) }
+
+    var editName by remember { mutableStateOf("") }
+    var editCourse by remember { mutableStateOf("") }
+
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
@@ -66,13 +72,7 @@ fun StudentListScreen(viewModel: StudentViewModel) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        var showDialog by remember { mutableStateOf(false) }
-        var selectedStudent by remember { mutableStateOf<Student?>(null) }
-
-        var editName by remember { mutableStateOf("") }
-        var editCourse by remember { mutableStateOf("") }
-
-        LazyColumn {
+          LazyColumn {
             items(students) { student ->
                 Row(
                     modifier = Modifier
@@ -88,9 +88,13 @@ fun StudentListScreen(viewModel: StudentViewModel) {
                     )
 
                     Row {
-
                         IconButton(
-                            onClick = { /* update action */ }
+                            onClick = {
+                                selectedStudent = student
+                                editName = student.name
+                                editCourse = student.course
+                                showDialog = true
+                            }
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Edit,
