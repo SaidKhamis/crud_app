@@ -10,7 +10,9 @@ Features:
 - Add New Student,
 - View Existing Students,
 
-TO-DO features:
-- Update Specific Student,
+Features Added:
+- Update Selected Student,
 - Delete Selected Student.
+
+TO-DO Feature:
 - Search for Particular Student.
