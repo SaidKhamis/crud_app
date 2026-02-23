@@ -72,7 +72,7 @@ fun StudentListScreen(viewModel: StudentViewModel, modifier: Modifier = Modifier
 
         Spacer(modifier = Modifier.height(16.dp))
 
-          LazyColumn {
+        LazyColumn {
             items(students) { student ->
                 Row(
                     modifier = Modifier
