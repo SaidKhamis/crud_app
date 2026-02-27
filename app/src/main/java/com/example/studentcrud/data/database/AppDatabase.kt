@@ -9,27 +9,31 @@ import com.example.studentcrud.data.dao.StudentDao
 
 @Database(
     entities = [Student::class],
-    version = 1,
-    exportSchema = false
+    exportSchema = false,
+    version = 1
 )
-
 abstract class AppDatabase: RoomDatabase() {
     abstract fun studentDao(): StudentDao
 
     companion object{
         @Volatile
-        private var INSTANCE: AppDatabase? = null
+        private var INSTANCE : AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
+        fun getDatabase(context: Context) : AppDatabase{
             return INSTANCE ?: synchronized(this){
-                val instance = Room.databaseBuilder (
+                val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     "student_db"
-                ).build()
+                ) .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
+
+
+
+
+
 }

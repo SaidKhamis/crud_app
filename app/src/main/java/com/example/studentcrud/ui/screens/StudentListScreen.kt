@@ -5,17 +5,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.studentcrud.data.entity.Student
 import com.example.studentcrud.viewmodel.StudentViewModel
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.ui.Alignment
 
 @Composable
 fun StudentListScreen(viewModel: StudentViewModel, modifier: Modifier = Modifier) {
@@ -69,49 +62,22 @@ fun StudentListScreen(viewModel: StudentViewModel, modifier: Modifier = Modifier
         ) {
             Text("Add Student")
         }
-
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyColumn {
             items(students) { student ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-
-                    Text(
-                        text = "${student.name} - ${student.course}",
-                        modifier = Modifier.weight(1f)
-                    )
-
-                    Row {
-                        IconButton(
-                            onClick = {
-                                selectedStudent = student
-                                editName = student.name
-                                editCourse = student.course
-                                showDialog = true
-                            }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Edit,
-                                contentDescription = "Update"
-                            )
-                        }
-
-                        IconButton(
-                            onClick = { viewModel.deleteStudent(student) }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Delete,
-                                contentDescription = "Delete"
-                            )
-                        }
+                StudentItem(
+                    student = student,
+                    onEditClick = {
+                        selectedStudent = it
+                        editName = it.name
+                        editCourse = it.course
+                        showDialog = true
+                    },
+                    onDeleteClick = {
+                        viewModel.deleteStudent(it)
                     }
-                }
+                )
             }
         }
 

@@ -1,11 +1,9 @@
 package com.example.studentcrud.ui.screens
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Update
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -14,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.room.Delete
 import com.example.studentcrud.data.entity.Student
 
 @Composable
@@ -43,7 +40,7 @@ fun StudentItem(
         }
 
         IconButton(
-            onClick = {onEditClick(student)}
+            onClick = { onEditClick(student) }
         ) {
             Icon(
                 imageVector = Icons.Default.Edit,
@@ -52,7 +49,7 @@ fun StudentItem(
         }
 
         IconButton(
-            onClick = {onDeleteClick(student)}
+            onClick = { onDeleteClick(student) }
         ) {
             Icon(
                 imageVector = Icons.Default.Delete,
