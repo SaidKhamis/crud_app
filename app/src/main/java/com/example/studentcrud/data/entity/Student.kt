@@ -3,9 +3,9 @@ package com.example.studentcrud.data.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity (tableName="student")
+@Entity(tableName = "students")
 data class Student(
-    @PrimaryKey (autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val course: String
 )

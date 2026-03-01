@@ -6,7 +6,7 @@ import com.example.studentcrud.data.entity.Student
 
 @Dao
 interface StudentDao {
-    @Query("SELECT * FROM student")
+    @Query("SELECT * FROM students")
     fun getAllStudents(): Flow<List<Student>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

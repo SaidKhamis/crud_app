@@ -10,7 +10,7 @@ import com.example.studentcrud.data.dao.StudentDao
 @Database(
     entities = [Student::class],
     exportSchema = false,
-    version = 1
+    version = 2
 )
 abstract class AppDatabase: RoomDatabase() {
     abstract fun studentDao(): StudentDao
@@ -25,15 +25,12 @@ abstract class AppDatabase: RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "student_db"
-                ) .build()
+                )
+                .fallbackToDestructiveMigration()
+                .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
-
-
-
-
-
 }
